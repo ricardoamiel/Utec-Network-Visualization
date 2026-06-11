@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UTECVis · Faculty Collaboration Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+/* ══════════════════════════════════════════════════════════
+   RESET & ROOT VARIABLES
+══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #ffffff;
+  --surface:   #f8f9fb;
+  --surface2:  #f0f2f6;
+  --border:    #e2e6ed;
+  --border2:   #cdd3de;
+  --text:      #1a2133;
+  --text2:     #4b5875;
+  --text3:     #8a96ab;
+  --accent:    #2563eb;
+  --accent-lt: #dbeafe;
+  --gold:      #d97706;
+  --shadow:    0 2px 12px rgba(0,0,0,.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
+  --radius:    10px;
+  --radius-lg: 16px;
+  /* Dept colours */
+  --cs:    #2563eb;
+  --ee:    #d97706;
+  --me:    #059669;
+  --ce:    #dc2626;
+  --env:   #7c3aed;
+  --ie:    #db2777;
+  --math:  #0891b2;
+  --phy:   #65a30d;
+}
+
+html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
+
+/* ══════════════════════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════════════════════ */
+.app { display: grid; grid-template-rows: 56px 1fr; height: 100vh; }
+
+/* Header */
+header {
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 20px;
+  background: var(--bg);
+  border-bottom: 1.5px solid var(--border);
+  z-index: 100;
+}
+.logo { font-size: 1.1rem; font-weight: 700; color: var(--accent); letter-spacing: -.5px; white-space: nowrap; }
+.logo span { color: var(--text3); font-weight: 400; }
+.header-sep { flex: 1; }
+#search-box {
+  padding: 7px 14px; border: 1.5px solid var(--border); border-radius: 22px;
+  font-family: inherit; font-size: .88rem; color: var(--text); width: 220px;
+  outline: none; transition: border-color .2s, box-shadow .2s;
+}
+#search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-lt); }
+.header-stats { display: flex; gap: 20px; }
+.hstat { text-align: right; }
+.hstat .val { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
+.hstat .lbl { font-size: .72rem; color: var(--text3); text-transform: uppercase; letter-spacing: .05em; }
+
+/* Main content */
+.main { display: grid; grid-template-columns: 300px 1fr 280px; overflow: hidden; }
+
+/* ══════════════════════════════════════════════════════════
+   LEFT PANEL – TASKS
+══════════════════════════════════════════════════════════ */
+#left-panel {
+  border-right: 1.5px solid var(--border);
+  overflow-y: auto;
+  background: var(--bg);
+}
+#left-panel::-webkit-scrollbar { width: 5px; }
+#left-panel::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+.panel-title {
+  font-size: .7rem; font-weight: 600; color: var(--text3); text-transform: uppercase;
+  letter-spacing: .09em; padding: 16px 16px 8px;
+}
+
+/* Task tabs */
+.task-tabs { display: flex; gap: 4px; padding: 6px 12px 0; flex-wrap: wrap; }
+.task-tab {
+  padding: 5px 12px; border-radius: 20px; font-size: .78rem; font-weight: 500;
+  cursor: pointer; border: 1.5px solid var(--border); color: var(--text2);
+  background: var(--bg); transition: all .18s; user-select: none;
+}
+.task-tab:hover { border-color: var(--accent); color: var(--accent); }
+.task-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Task panel sections */
+.task-section { display: none; padding: 12px 16px; }
+.task-section.visible { display: block; }
+.task-desc {
+  font-size: .8rem; color: var(--text2); line-height: 1.5; margin-bottom: 12px;
+  padding: 8px 10px; background: var(--surface); border-radius: var(--radius);
+  border-left: 3px solid var(--accent);
+}
+
+/* Ranked list */
+.rank-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.rank-item {
+  display: flex; align-items: center; gap: 8px; padding: 7px 9px;
+  border-radius: 8px; cursor: pointer; transition: background .15s;
+}
+.rank-item:hover, .rank-item.highlighted { background: var(--surface2); }
+.rank-num { font-size: .72rem; font-weight: 700; color: var(--text3); width: 16px; text-align: right; flex-shrink: 0; }
+.rank-avatar {
+  width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-size: .7rem; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.rank-info { flex: 1; min-width: 0; }
+.rank-name { font-size: .82rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rank-sub  { font-size: .72rem; color: var(--text3); }
+.rank-bar-wrap { width: 52px; flex-shrink: 0; }
+.rank-bar-bg { height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.rank-bar    { height: 5px; background: var(--accent); border-radius: 3px; transition: width .4s ease; }
+.rank-val    { font-size: .68rem; color: var(--text3); text-align: right; }
+
+/* Dept grid */
+.dept-grid { display: flex; flex-direction: column; gap: 6px; }
+.dept-row {
+  display: flex; align-items: center; gap: 8px; padding: 7px 10px;
+  border-radius: 8px; cursor: pointer; transition: background .15s;
+}
+.dept-row:hover { background: var(--surface2); }
+.dept-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dept-name { font-size: .83rem; font-weight: 500; flex: 1; }
+.dept-count { font-size: .75rem; color: var(--text3); font-family: 'DM Mono', monospace; }
+.dept-progress { height: 4px; background: var(--surface2); border-radius: 2px; margin-top: 3px; overflow: hidden; }
+.dept-bar { height: 4px; border-radius: 2px; transition: width .4s ease; }
+
+/* Area badges */
+.area-grid { display: flex; flex-direction: column; gap: 5px; }
+.area-row {
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  padding: 5px 8px; border-radius: 6px; transition: background .15s;
+}
+.area-row:hover { background: var(--surface2); }
+.area-name { font-size: .8rem; flex: 1; }
+.area-badge {
+  font-size: .68rem; font-weight: 600; background: var(--surface2);
+  color: var(--text2); padding: 2px 7px; border-radius: 10px; font-family: 'DM Mono', monospace;
+}
+
+/* Predicted links */
+.pred-list { display: flex; flex-direction: column; gap: 6px; }
+.pred-item {
+  padding: 8px 10px; border-radius: 8px; border: 1.5px solid var(--border);
+  cursor: pointer; transition: all .18s;
+}
+.pred-item:hover { border-color: var(--accent); background: var(--accent-lt); }
+.pred-names { font-size: .82rem; font-weight: 600; }
+.pred-meta  { font-size: .72rem; color: var(--text3); margin-top: 2px; }
+.pred-score { font-size: .7rem; font-family: 'DM Mono', monospace; color: var(--gold); }
+
+/* ══════════════════════════════════════════════════════════
+   CENTER – NETWORK
+══════════════════════════════════════════════════════════ */
+#center { position: relative; overflow: hidden; background: var(--bg); }
+
+/* Controls bar */
+.controls {
+  position: absolute; top: 12px; left: 12px; right: 12px;
+  display: flex; gap: 8px; flex-wrap: wrap; z-index: 10; pointer-events: none;
+}
+.controls > * { pointer-events: all; }
+.ctrl-group { display: flex; gap: 4px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 22px; padding: 3px; }
+.ctrl-btn {
+  padding: 5px 13px; border: none; border-radius: 18px; font-family: inherit;
+  font-size: .78rem; font-weight: 500; cursor: pointer; color: var(--text2);
+  background: transparent; transition: all .18s; white-space: nowrap;
+}
+.ctrl-btn:hover { background: var(--surface2); color: var(--text); }
+.ctrl-btn.active { background: var(--accent); color: #fff; }
+
+.dept-filter { display: flex; gap: 4px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 22px; padding: 3px; }
+.dept-btn {
+  padding: 4px 11px; border: none; border-radius: 18px; font-family: inherit;
+  font-size: .76rem; font-weight: 600; cursor: pointer; transition: all .18s;
+  color: #fff; opacity: .55;
+}
+.dept-btn:hover, .dept-btn.active { opacity: 1; }
+.dept-btn.all-btn { background: var(--text2) !important; }
+
+.zoom-controls { display: flex; gap: 2px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+.zoom-btn {
+  padding: 5px 10px; border: none; font-size: 1rem; cursor: pointer;
+  background: transparent; color: var(--text2); transition: background .15s;
+}
+.zoom-btn:hover { background: var(--surface2); }
+
+/* SVG */
+#network-svg { width: 100%; height: 100%; display: block; }
+.links line { stroke: #c8d0df; transition: stroke .2s, stroke-opacity .2s, stroke-width .2s; }
+.links line.cross-dept { stroke: #b4bcc9; stroke-dasharray: none; }
+.links line.dimmed  { stroke-opacity: .08 !important; }
+.links line.highlighted { stroke: var(--accent) !important; stroke-opacity: .9 !important; }
+
+.node-g { cursor: pointer; }
+.node-g circle.bg    { fill: var(--bg); }
+.node-g circle.ring  { fill: none; }
+.node-g circle.body  { transition: fill-opacity .2s; }  /* r removed: conflicts with D3 transition */
+.node-g.dimmed circle.body { fill-opacity: .15 !important; }
+.node-g.dimmed text  { opacity: .1 !important; }
+.node-g text.lbl {
+  font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 500;
+  fill: var(--text2); text-anchor: middle; pointer-events: none;
+  paint-order: stroke; stroke: white; stroke-width: 3px; stroke-linejoin: round;
+}
+.node-g text.init {
+  font-family: 'DM Sans', sans-serif; font-weight: 700; fill: white;
+  text-anchor: middle; dominant-baseline: central; pointer-events: none;
+}
+
+/* Betweenness halo */
+.bridge-ring { stroke-width: 2.5; fill: none; stroke-dasharray: 4 3; }
+
+/* Tooltip */
+#tooltip {
+  position: absolute; pointer-events: none;
+  background: white; border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px; box-shadow: var(--shadow-lg);
+  max-width: 230px; z-index: 200; display: none; font-size: .82rem;
+}
+#tooltip .tt-name  { font-weight: 700; font-size: .92rem; color: var(--text); }
+#tooltip .tt-dept  { font-size: .76rem; color: var(--text3); margin-bottom: 6px; }
+#tooltip .tt-row   { display: flex; justify-content: space-between; gap: 12px; margin-top: 3px; }
+#tooltip .tt-key   { color: var(--text3); }
+#tooltip .tt-val   { font-weight: 600; font-family: 'DM Mono', monospace; color: var(--text); }
+#tooltip .tt-areas { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px; }
+#tooltip .tt-area  {
+  font-size: .69rem; background: var(--surface2); color: var(--text2);
+  padding: 2px 7px; border-radius: 10px;
+}
+
+/* Legend bottom bar */
+#legend {
+  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 14px; background: rgba(255,255,255,.92);
+  border: 1.5px solid var(--border); border-radius: 22px; padding: 7px 18px;
+  box-shadow: var(--shadow); z-index: 10; flex-wrap: wrap; justify-content: center;
+}
+.leg-item { display: flex; align-items: center; gap: 5px; font-size: .76rem; color: var(--text2); white-space: nowrap; }
+.leg-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+/* ══════════════════════════════════════════════════════════
+   RIGHT PANEL – NODE DETAIL
+══════════════════════════════════════════════════════════ */
+#right-panel {
+  border-left: 1.5px solid var(--border);
+  overflow-y: auto;
+  background: var(--bg);
+}
+#right-panel::-webkit-scrollbar { width: 5px; }
+#right-panel::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+#detail-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; color: var(--text3); font-size: .88rem; padding: 24px; text-align: center;
+}
+#detail-placeholder svg { margin-bottom: 12px; opacity: .3; }
+#detail-content { display: none; padding: 20px 16px; }
+
+.detail-avatar {
+  width: 60px; height: 60px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; font-weight: 700; color: white;
+  margin: 0 auto 12px; box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+.detail-name { font-size: 1.05rem; font-weight: 700; text-align: center; color: var(--text); }
+.detail-dept { font-size: .8rem; color: var(--text3); text-align: center; margin-bottom: 14px; }
+
+.metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 14px; }
+.metric-card {
+  background: var(--surface); border-radius: 8px; padding: 9px 10px; text-align: center;
+}
+.metric-card .mv { font-size: .98rem; font-weight: 700; font-family: 'DM Mono', monospace; color: var(--text); }
+.metric-card .mk { font-size: .68rem; color: var(--text3); text-transform: uppercase; letter-spacing: .05em; margin-top: 1px; }
+
+.section-head { font-size: .7rem; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: .09em; margin: 10px 0 6px; }
+
+.area-tag {
+  display: inline-block; font-size: .75rem; background: var(--accent-lt);
+  color: var(--accent); padding: 3px 9px; border-radius: 12px; margin: 2px;
+}
+.collab-list { display: flex; flex-direction: column; gap: 4px; }
+.collab-item {
+  display: flex; align-items: center; gap: 7px; padding: 5px 7px; border-radius: 7px;
+  cursor: pointer; transition: background .15s; font-size: .82rem;
+}
+.collab-item:hover { background: var(--surface2); }
+.collab-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.collab-name { flex: 1; font-weight: 500; }
+.collab-w { font-size: .7rem; color: var(--text3); font-family: 'DM Mono', monospace; }
+
+/* ══════════════════════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════════════════════ */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%,100%{r:0} 50%{r:5} }
+
+.loading-overlay {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.9); z-index: 999;
+}
+.spinner {
+  width: 40px; height: 40px; border: 3px solid var(--border);
+  border-top-color: var(--accent); border-radius: 50;
+  animation: spin 0.7s linear infinite;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <!-- ════ HEADER ════ -->
+  <header>
+    <div class="logo">UTECVis <span>· Faculty Collaboration Network</span></div>
+    <div class="header-sep"></div>
+    <input id="search-box" type="text" placeholder="🔍  Search professor…"/>
+    <div class="header-stats">
+      <div class="hstat"><div class="val" id="stat-nodes">—</div><div class="lbl">Faculty</div></div>
+      <div class="hstat"><div class="val" id="stat-edges">—</div><div class="lbl">Collab.</div></div>
+      <div class="hstat"><div class="val" id="stat-comms">—</div><div class="lbl">Communities</div></div>
+    </div>
+  </header>
+
+  <div class="main">
+    <!-- ════ LEFT PANEL ════ -->
+    <div id="left-panel">
+      <div class="panel-title">Analysis Tasks</div>
+      <div class="task-tabs">
+        <div class="task-tab active" data-task="t1">T1 · Degree</div>
+        <div class="task-tab" data-task="t2">T2 · Bridges</div>
+        <div class="task-tab" data-task="t3">T3 · Depts</div>
+        <div class="task-tab" data-task="t4">T4 · Areas</div>
+        <div class="task-tab" data-task="t5">T5 · Predict</div>
+      </div>
+
+      <!-- T1 – Most Prolific Collaborators -->
+      <div id="t1" class="task-section visible">
+        <p class="task-desc">
+          <strong>T1 – Most Prolific Collaborators</strong><br/>
+          Who has the highest number of co-authorship connections (degree centrality)?
+        </p>
+        <ul class="rank-list" id="t1-list"></ul>
+      </div>
+
+      <!-- T2 – Bridge Professors (Betweenness) -->
+      <div id="t2" class="task-section">
+        <p class="task-desc">
+          <strong>T2 – Bridge Professors</strong><br/>
+          Who acts as the critical intermediary between departments (betweenness centrality)?
+        </p>
+        <ul class="rank-list" id="t2-list"></ul>
+      </div>
+
+      <!-- T3 – Department Connectivity -->
+      <div id="t3" class="task-section">
+        <p class="task-desc">
+          <strong>T3 – Department Connectivity</strong><br/>
+          Which departments are most interconnected? Click to isolate a department.
+        </p>
+        <div class="dept-grid" id="t3-dept-grid"></div>
+      </div>
+
+      <!-- T4 – Research Area Hubs -->
+      <div id="t4" class="task-section">
+        <p class="task-desc">
+          <strong>T4 – Research Area Hubs</strong><br/>
+          Which research areas generate the most cross-departmental collaboration?
+        </p>
+        <div class="area-grid" id="t4-area-grid"></div>
+      </div>
+
+      <!-- T5 – Link Prediction -->
+      <div id="t5" class="task-section">
+        <p class="task-desc">
+          <strong>T5 – Predicted Future Links</strong><br/>
+          Using Adamic–Adar index, which cross-dept collaborations are most likely to emerge?
+        </p>
+        <div class="pred-list" id="t5-pred-list"></div>
+      </div>
+    </div>
+
+    <!-- ════ CENTER (GRAPH) ════ -->
+    <div id="center">
+      <div class="loading-overlay" id="loading">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <div class="ctrl-group">
+          <button class="ctrl-btn active" data-mode="default">Default</button>
+          <button class="ctrl-btn" data-mode="degree">Degree</button>
+          <button class="ctrl-btn" data-mode="betweenness">Betweenness</button>
+          <button class="ctrl-btn" data-mode="community">Community</button>
+        </div>
+        <div class="dept-filter" id="dept-filter"></div>
+        <div class="zoom-controls">
+          <button class="zoom-btn" id="zoom-in" title="Zoom in">＋</button>
+          <button class="zoom-btn" id="zoom-reset" title="Reset zoom">⊙</button>
+          <button class="zoom-btn" id="zoom-out" title="Zoom out">－</button>
+        </div>
+      </div>
+
+      <svg id="network-svg">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#c8d0df"/>
+          </marker>
+        </defs>
+      </svg>
+
+      <!-- Tooltip -->
+      <div id="tooltip"></div>
+
+      <!-- Legend -->
+      <div id="legend"></div>
+    </div>
+
+    <!-- ════ RIGHT PANEL (DETAIL) ════ -->
+    <div id="right-panel">
+      <div id="detail-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/>
+          <line x1="12" y1="3" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="21"/>
+          <line x1="3" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="21" y2="12"/>
+        </svg>
+        Click a node to explore a professor's collaboration profile
+      </div>
+      <div id="detail-content"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   CONFIGURATION
+══════════════════════════════════════════════════════════ */
+// All dept codes produced by compute_metrics.py (mock + real UTEC data)
+const _DEPT_COLORS_RAW = {
+  CS:"#2563eb", EE:"#d97706", ME:"#059669", CE:"#dc2626",
+  ENV:"#7c3aed", IE:"#db2777", MATH:"#0891b2", PHY:"#65a30d",
+  DS:"#0e7490", AI:"#6d28d9", BIO:"#16a34a", HUM:"#9333ea",
+  BUS:"#0369a1", SCI:"#0f766e", SYS:"#b45309", UNK:"#64748b",
+};
+// Proxy: returns #64748b for any unknown code instead of undefined
+const DEPT_COLORS = new Proxy(_DEPT_COLORS_RAW, {
+  get(t, k) { return t[k] || "#64748b"; }
+});
+
+const DEPT_LABELS = {
+  CS:"Computer Science", EE:"Electronics & Mech.", ME:"Mechanical Eng.",
+  CE:"Civil Eng.", ENV:"Environmental Eng.", IE:"Industrial Eng.",
+  MATH:"Mathematics", PHY:"Physics",
+  DS:"Data Science", AI:"Artificial Intel.", BIO:"Bioengineering",
+  HUM:"Humanities", BUS:"Business", SCI:"Sciences",
+  SYS:"Systems & Security", UNK:"Other",
+};
+
+let allNodes = [], allEdges = [], predictedLinks = [];
+let simulation, svgSel, gMain, linkSel, nodeSel, zoomBehavior;
+let activeTask   = "t1";
+let activeMode   = "default";
+let activeDept   = "all";
+let activeArea   = null;
+let selectedNode = null;
+
+/* ══════════════════════════════════════════════════════════
+   MAIN INIT
+══════════════════════════════════════════════════════════ */
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/api/network")
+    .then(r => {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(data => {
+      allNodes       = data.nodes       || [];
+      allEdges       = data.edges       || [];
+      predictedLinks = data.predicted_links || [];
+      document.getElementById("stat-nodes").textContent = data.num_nodes || allNodes.length;
+      document.getElementById("stat-edges").textContent = data.num_edges || allEdges.length;
+      document.getElementById("stat-comms").textContent = data.num_communities || "—";
+
+      try { buildSidePanels(); } catch(e) { console.error("buildSidePanels:", e); }
+      try { buildDeptFilter(); } catch(e) { console.error("buildDeptFilter:", e); }
+      try { buildLegend();     } catch(e) { console.error("buildLegend:", e); }
+      // Use requestAnimationFrame so the browser paints the layout
+      // before we read offsetWidth/Height inside buildGraph().
+      requestAnimationFrame(() => {
+        try { buildGraph(); } catch(e) { console.error("buildGraph:", e); }
+      });
+    })
+    .catch(err => {
+      console.error("Network load failed:", err);
+      document.getElementById("loading").innerHTML =
+        `<div style="text-align:center;color:#dc2626;font-family:sans-serif">
+          <p style="font-size:1.1rem;font-weight:600">Error loading data</p>
+          <p style="font-size:.85rem;margin-top:6px">${err.message}</p>
+          <p style="font-size:.8rem;color:#64748b;margin-top:4px">
+            Run: python preprocess/compute_metrics.py</p>
+        </div>`;
+    })
+    .finally(() => {
+      document.getElementById("loading").style.display = "none";
+    });
+});
+
+/* ══════════════════════════════════════════════════════════
+   SIDE PANELS
+══════════════════════════════════════════════════════════ */
+function buildSidePanels() {
+  /* T1 – Degree */
+  const sorted1 = [...allNodes].sort((a, b) => b.degree - a.degree).slice(0, 10);
+  const maxDeg  = sorted1[0].degree;
+  const ul1 = document.getElementById("t1-list");
+  sorted1.forEach((n, i) => {
+    const li = document.createElement("li");
+    li.className = "rank-item";
+    li.dataset.id = n.id;
+    li.innerHTML = `
+      <span class="rank-num">${i+1}</span>
+      <div class="rank-avatar" style="background:${DEPT_COLORS[n.dept_code]}">${initials(n.name)}</div>
+      <div class="rank-info">
+        <div class="rank-name">${n.name}</div>
+        <div class="rank-sub">${DEPT_LABELS[n.dept_code]}</div>
+      </div>
+      <div class="rank-bar-wrap">
+        <div class="rank-bar-bg"><div class="rank-bar" style="width:${(n.degree/maxDeg*100).toFixed(0)}%"></div></div>
+        <div class="rank-val">${n.degree} collab.</div>
+      </div>`;
+    li.addEventListener("click", () => selectNodeById(n.id));
+    ul1.appendChild(li);
+  });
+
+  /* T2 – Betweenness */
+  const sorted2 = [...allNodes].sort((a, b) => b.betweenness_centrality - a.betweenness_centrality).slice(0, 10);
+  const maxBet  = sorted2[0].betweenness_centrality;
+  const ul2 = document.getElementById("t2-list");
+  sorted2.forEach((n, i) => {
+    const li = document.createElement("li");
+    li.className = "rank-item";
+    li.dataset.id = n.id;
+    li.innerHTML = `
+      <span class="rank-num">${i+1}</span>
+      <div class="rank-avatar" style="background:${DEPT_COLORS[n.dept_code]}">${initials(n.name)}</div>
+      <div class="rank-info">
+        <div class="rank-name">${n.name}</div>
+        <div class="rank-sub">${DEPT_LABELS[n.dept_code]}</div>
+      </div>
+      <div class="rank-bar-wrap">
+        <div class="rank-bar-bg"><div class="rank-bar" style="width:${(n.betweenness_centrality/maxBet*100).toFixed(0)}%;background:#d97706"></div></div>
+        <div class="rank-val">${n.betweenness_centrality.toFixed(3)}</div>
+      </div>`;
+    li.addEventListener("click", () => selectNodeById(n.id));
+    ul2.appendChild(li);
+  });
+
+  /* T3 – Depts */
+  const deptStats = {};
+  allNodes.forEach(n => {
+    if (!deptStats[n.dept_code]) deptStats[n.dept_code] = { name: DEPT_LABELS[n.dept_code], count: 0, cross: 0 };
+    deptStats[n.dept_code].count++;
+  });
+  allEdges.forEach(e => {
+    if (e.is_cross_dept) {
+      deptStats[e.source_dept] && deptStats[e.source_dept].cross++;
+      deptStats[e.target_dept] && deptStats[e.target_dept].cross++;
+    }
+  });
+  const maxCross = Math.max(1, ...Object.values(deptStats).map(d => d.cross || 0));
+  const deptGrid = document.getElementById("t3-dept-grid");
+  Object.entries(deptStats).forEach(([code, d]) => {
+    const row = document.createElement("div");
+    row.className = "dept-row"; row.dataset.dept = code;
+    row.innerHTML = `
+      <div class="dept-dot" style="background:${DEPT_COLORS[code]}"></div>
+      <div class="dept-name" style="flex:1">
+        <div>${code}</div>
+        <div class="dept-progress"><div class="dept-bar" style="width:${(d.cross/maxCross*100).toFixed(0)}%;background:${DEPT_COLORS[code]}"></div></div>
+      </div>
+      <div class="dept-count">${d.count} prof.<br/><span style="color:#d97706">${d.cross} cross</span></div>`;
+    row.addEventListener("click", () => filterByDept(code));
+    deptGrid.appendChild(row);
+  });
+
+  /* T4 – Research Areas */
+  const areaCounts = {};
+  allEdges.filter(e => e.is_cross_dept).forEach(e => {
+    const sNode = allNodes.find(n => n.id === e.source);
+    const tNode = allNodes.find(n => n.id === e.target);
+    if (!sNode || !tNode) return;
+    const shared = sNode.areas.filter(a => tNode.areas.includes(a));
+    shared.forEach(a => { areaCounts[a] = (areaCounts[a] || 0) + 1; });
+  });
+  // Also count per area how many professors share it across depts
+  const areaProfDepts = {};
+  allNodes.forEach(n => n.areas.forEach(a => {
+    if (!areaProfDepts[a]) areaProfDepts[a] = new Set();
+    areaProfDepts[a].add(n.dept_code);
+  }));
+  // Sort by cross-dept spread
+  const sortedAreas = Object.entries(areaProfDepts)
+    .map(([a, depts]) => ({ area: a, depts: depts.size, cross: areaCounts[a] || 0 }))
+    .filter(x => x.depts > 1)
+    .sort((a, b) => b.depts - a.depts || b.cross - a.cross)
+    .slice(0, 15);
+  const areaGrid = document.getElementById("t4-area-grid");
+  sortedAreas.forEach(({ area, depts, cross }) => {
+    const row = document.createElement("div");
+    row.className = "area-row";
+    row.innerHTML = `<span class="area-name">${area}</span>
+      <span class="area-badge">${depts} depts</span>
+      <span class="area-badge" style="background:#fef3c7;color:#d97706">${cross} links</span>`;
+    row.addEventListener("click", () => filterByArea(area));
+    areaGrid.appendChild(row);
+  });
+
+  /* T5 – Predicted Links */
+  const predList = document.getElementById("t5-pred-list");
+  predictedLinks.slice(0, 8).forEach(pl => {
+    const sName = allNodes.find(n => n.id === pl.source)?.name || pl.source;
+    const tName = allNodes.find(n => n.id === pl.target)?.name || pl.target;
+    const div = document.createElement("div");
+    div.className = "pred-item";
+    div.innerHTML = `
+      <div class="pred-names">
+        <span style="color:${DEPT_COLORS[pl.source_dept]}">●</span> ${sName.split(" ")[0]}
+        <span style="color:var(--text3)">↔</span>
+        <span style="color:${DEPT_COLORS[pl.target_dept]}">●</span> ${tName.split(" ")[0]}
+      </div>
+      <div class="pred-meta">${pl.source_dept} ↔ ${pl.target_dept} · ${pl.common_neighbors} common neighbors</div>
+      <div class="pred-score">AA score: ${pl.score}</div>`;
+    div.addEventListener("click", () => highlightPredictedLink(pl));
+    predList.appendChild(div);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════
+   TASK TAB SWITCHING
+══════════════════════════════════════════════════════════ */
+document.querySelectorAll(".task-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".task-tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".task-section").forEach(s => s.classList.remove("visible"));
+    tab.classList.add("active");
+    activeTask = tab.dataset.task;
+    document.getElementById(activeTask).classList.add("visible");
+    applyTaskHighlight();
+  });
+});
+
+function applyTaskHighlight() {
+  if (!nodeSel) return;
+  resetHighlight();
+  if (activeTask === "t2") highlightMode("betweenness");
+  if (activeTask === "t1") highlightMode("degree");
+}
+
+/* ══════════════════════════════════════════════════════════
+   DEPT FILTER BUTTONS
+══════════════════════════════════════════════════════════ */
+function buildDeptFilter() {
+  const df = document.getElementById("dept-filter");
+  const allBtn = document.createElement("button");
+  allBtn.className = "dept-btn all-btn active"; allBtn.textContent = "All"; allBtn.dataset.dept = "all";
+  allBtn.addEventListener("click", () => filterByDept("all"));
+  df.appendChild(allBtn);
+  Object.entries(_DEPT_COLORS_RAW).forEach(([code, color]) => {
+    const btn = document.createElement("button");
+    btn.className = "dept-btn"; btn.textContent = code; btn.dataset.dept = code;
+    btn.style.background = color;
+    btn.addEventListener("click", () => filterByDept(code));
+    df.appendChild(btn);
+  });
+}
+
+function filterByDept(code) {
+  activeDept = code; activeArea = null;
+  document.querySelectorAll(".dept-btn").forEach(b => b.classList.toggle("active", b.dataset.dept === code));
+  if (!nodeSel) return;
+  if (code === "all") { resetHighlight(); return; }
+  nodeSel.classed("dimmed", d => d.dept_code !== code);
+  linkSel.classed("dimmed", d => d.source_dept !== code && d.target_dept !== code);
+}
+
+function filterByArea(area) {
+  activeArea = area; activeDept = "all";
+  document.querySelectorAll(".dept-btn").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".dept-btn.all-btn").forEach(b => b.classList.add("active"));
+  if (!nodeSel) return;
+  const matching = new Set(allNodes.filter(n => n.areas.includes(area)).map(n => n.id));
+  nodeSel.classed("dimmed", d => !matching.has(d.id));
+  linkSel.classed("dimmed", d => !matching.has(d.source.id) || !matching.has(d.target.id));
+}
+
+/* ══════════════════════════════════════════════════════════
+   GRAPH CONSTRUCTION
+══════════════════════════════════════════════════════════ */
+function buildGraph() {
+  // Use window dimensions directly — no CSS layout race condition.
+  const W = Math.max(400, window.innerWidth  - 590);
+  const H = Math.max(400, window.innerHeight - 70);
+
+  if (!allNodes.length) { console.error("allNodes is empty — data not loaded?"); return; }
+  console.log("buildGraph:", allNodes.length, "nodes,", allEdges.length, "edges,", W+"x"+H);
+
+  svgSel = d3.select("#network-svg").attr("width", W).attr("height", H);
+
+  zoomBehavior = d3.zoom().scaleExtent([0.15, 4])
+    .on("zoom", ev => gMain.attr("transform", ev.transform));
+  svgSel.call(zoomBehavior);
+
+  gMain = svgSel.append("g");
+
+  /* Prepare node and edge objects */
+  const nodeMap = {};
+  allNodes.forEach(n => { nodeMap[n.id] = n; });
+  const links = allEdges.map(e => ({
+    ...e,
+    source: e.source, target: e.target,
+  }));
+
+  const rScale = d3.scaleSqrt()
+    .domain([0, d3.max(allNodes, d => d.degree)])
+    .range([9, 28]);
+
+  const betScale = d3.scaleLinear()
+    .domain([0, d3.max(allNodes, d => d.betweenness_centrality)])
+    .range([0, 1]);
+
+  const edgeWScale = d3.scaleLinear()
+    .domain([1, d3.max(allEdges, e => e.weight)])
+    .range([1, 5]);
+
+  /* Force simulation */
+  simulation = d3.forceSimulation(allNodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(d => {
+      const sd = (d.source.dept_code || d.source), td = (d.target.dept_code || d.target);
+      return sd === td ? 70 : 110;
+    }).strength(0.6))
+    .force("charge", d3.forceManyBody().strength(-280).distanceMax(400))
+    .force("center",  d3.forceCenter(W / 2, H / 2))
+    .force("collision", d3.forceCollide().radius(d => rScale(d.degree) + 6))
+    .force("x", d3.forceX(W / 2).strength(0.03))
+    .force("y", d3.forceY(H / 2).strength(0.03));
+
+  /* Edges */
+  linkSel = gMain.append("g").attr("class", "links")
+    .selectAll("line")
+    .data(links)
+    .join("line")
+    .attr("class", d => `edge ${d.is_cross_dept ? "cross-dept" : ""}`)
+    .attr("stroke-width", d => edgeWScale(d.weight))
+    .attr("stroke-opacity", 0.5);
+
+  /* Nodes */
+  const nodeGroups = gMain.append("g").attr("class", "nodes")
+    .selectAll("g")
+    .data(allNodes)
+    .join("g")
+    .attr("class", "node-g")
+    .attr("id", d => "node-" + d.id)
+    .call(d3.drag()
+      .on("start", dragStart)
+      .on("drag",  dragged)
+      .on("end",   dragEnd))
+    .on("mouseover", handleMouseOver)
+    .on("mouseout",  handleMouseOut)
+    .on("click",     handleClick);
+
+  nodeSel = nodeGroups;
+
+  /* defs for clipPaths (one per node for circular photo crop) */
+  const defs = svgSel.select("defs");
+
+  /* White bg circle */
+  nodeGroups.append("circle")
+    .attr("class", "bg")
+    .attr("r", d => rScale(d.degree) + 2)
+    .attr("fill", "white");
+
+  /* Coloured body (shown when no photo, or as border behind photo) */
+  nodeGroups.append("circle")
+    .attr("class", "body")
+    .attr("r", 0)
+    .attr("fill", d => DEPT_COLORS[d.dept_code])
+    .attr("stroke", d => DEPT_COLORS[d.dept_code])
+    .attr("stroke-width", 0)
+    .transition().delay((_, i) => i * 18).duration(500)
+    .attr("r", d => rScale(d.degree));
+
+  /* Betweenness bridge ring */
+  nodeGroups.append("circle")
+    .attr("class", "bridge-ring")
+    .attr("r", d => rScale(d.degree) + 5)
+    .attr("stroke", d => betScale(d.betweenness_centrality) > 0.3
+      ? "#d97706" : "transparent")
+    .attr("stroke-opacity", d => betScale(d.betweenness_centrality));
+
+  /* Photo (if available) – clipped to circle via clipPath */
+  nodeGroups.each(function(d) {
+    const r = rScale(d.degree);
+    if (!d.photo_url) return;
+
+    const cpId = "cp-" + d.id;
+    defs.append("clipPath").attr("id", cpId)
+      .append("circle").attr("r", r);
+
+    const photoSrc = "/api/photo?url=" + encodeURIComponent(d.photo_url);
+    d3.select(this).append("image")
+      .attr("class", "node-photo")
+      .attr("href", photoSrc)
+      .attr("x", -r).attr("y", -r)
+      .attr("width", r * 2).attr("height", r * 2)
+      .attr("clip-path", "url(#" + cpId + ")")
+      .attr("preserveAspectRatio", "xMidYMid slice")
+      .attr("opacity", 0)
+      .on("error", function() { d3.select(this).remove(); })
+      .transition().delay((_, i) => 400).duration(300).attr("opacity", 1);
+  });
+
+  /* Initials (shown when no photo) */
+  nodeGroups.filter(d => !d.photo_url)
+    .append("text")
+    .attr("class", "init")
+    .attr("font-size", d => Math.max(8, rScale(d.degree) * 0.55))
+    .text(d => initials(d.name))
+    .attr("opacity", 0)
+    .transition().delay((_, i) => i * 18 + 300).duration(300)
+    .attr("opacity", 1);
+
+  /* Labels */
+  nodeGroups.append("text")
+    .attr("class", "lbl")
+    .attr("dy", d => rScale(d.degree) + 11)
+    .text(d => shortName(d.name))
+    .attr("opacity", 0)
+    .transition().delay((_, i) => i * 18 + 400).duration(300)
+    .attr("opacity", 1);
+
+  /* Simulation tick */
+  simulation.on("tick", () => {
+    linkSel
+      .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+    nodeGroups.attr("transform", d => `translate(${d.x},${d.y})`);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════
+   VIEW MODE BUTTONS
+══════════════════════════════════════════════════════════ */
+document.querySelectorAll(".ctrl-btn[data-mode]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".ctrl-btn[data-mode]").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeMode = btn.dataset.mode;
+    applyMode();
+  });
+});
+
+function applyMode() {
+  if (!nodeSel) return;
+  resetHighlight();
+  if (activeMode === "degree") {
+    highlightMode("degree");
+  } else if (activeMode === "betweenness") {
+    highlightMode("betweenness");
+  } else if (activeMode === "community") {
+    const commColors = d3.schemeTableau10;
+    nodeSel.selectAll("circle.body")
+      .transition().duration(400)
+      .attr("fill", d => commColors[d.community % commColors.length]);
+  }
+}
+
+function highlightMode(metric) {
+  const vals = allNodes.map(n => n[metric === "degree" ? "degree" : "betweenness_centrality"]);
+  const maxV = d3.max(vals);
+  const opScale = d3.scaleLinear().domain([0, maxV]).range([0.2, 1]);
+  nodeSel.classed("dimmed", false);
+  nodeSel.selectAll("circle.body")
+    .transition().duration(300)
+    .attr("fill-opacity", d => opScale(metric === "degree" ? d.degree : d.betweenness_centrality));
+}
+
+/* ══════════════════════════════════════════════════════════
+   INTERACTION HANDLERS
+══════════════════════════════════════════════════════════ */
+const tooltip = document.getElementById("tooltip");
+
+function handleMouseOver(event, d) {
+  // Glow: enlarge circle slightly
+  d3.select(this).select("circle.body")
+    .transition().duration(150)
+    .attr("r", rScale_fn(d.degree) * 1.15)
+    .attr("filter", "drop-shadow(0 0 6px rgba(0,0,0,.3))");
+
+  // Show tooltip
+  tooltip.style.display = "block";
+  tooltip.innerHTML = `
+    <div class="tt-name">${d.name}</div>
+    <div class="tt-dept" style="color:${DEPT_COLORS[d.dept_code]}">${DEPT_LABELS[d.dept_code]}</div>
+    <div class="tt-row"><span class="tt-key">h-index</span><span class="tt-val">${d.h_index}</span></div>
+    <div class="tt-row"><span class="tt-key">Publications</span><span class="tt-val">${d.pubs}</span></div>
+    <div class="tt-row"><span class="tt-key">Collaborations</span><span class="tt-val">${d.degree}</span></div>
+    <div class="tt-row"><span class="tt-key">Betweenness</span><span class="tt-val">${d.betweenness_centrality.toFixed(3)}</span></div>
+    <div class="tt-row"><span class="tt-key">PageRank</span><span class="tt-val">${d.pagerank.toFixed(4)}</span></div>
+    <div class="tt-areas">${d.areas.map(a => `<span class="tt-area">${a}</span>`).join("")}</div>`;
+
+  positionTooltip(event);
+}
+
+function handleMouseOut(event, d) {
+  d3.select(this).select("circle.body")
+    .transition().duration(200)
+    .attr("r", rScale_fn(d.degree))
+    .attr("filter", null);
+  if (selectedNode !== d.id) tooltip.style.display = "none";
+}
+
+function handleClick(event, d) {
+  event.stopPropagation();
+  selectedNode = d.id;
+  tooltip.style.display = "none";
+  highlightNeighbors(d);
+  showDetail(d);
+}
+
+// Rebuild graph if window is resized (keeps the simulation centred)
+let _resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(() => {
+    if (allNodes.length && simulation) {
+      const W = Math.max(400, window.innerWidth  - 590);
+      const H = Math.max(400, window.innerHeight - 70);
+      d3.select("#network-svg").attr("width", W).attr("height", H);
+      simulation.force("center", d3.forceCenter(W/2, H/2))
+                .force("x",      d3.forceX(W/2).strength(0.03))
+                .force("y",      d3.forceY(H/2).strength(0.03))
+                .alpha(0.3).restart();
+    }
+  }, 200);
+});
+
+document.getElementById("network-svg").addEventListener("click", () => {
+  selectedNode = null;
+  resetHighlight();
+  document.getElementById("detail-placeholder").style.display = "flex";
+  document.getElementById("detail-content").style.display = "none";
+});
+
+function highlightNeighbors(d) {
+  const neighbors = new Set();
+  allEdges.forEach(e => {
+    if (e.source === d.id || e.source.id === d.id) neighbors.add(e.target.id || e.target);
+    if (e.target === d.id || e.target.id === d.id) neighbors.add(e.source.id || e.source);
+  });
+  neighbors.add(d.id);
+
+  nodeSel.classed("dimmed", n => !neighbors.has(n.id));
+  linkSel.classed("highlighted", l => (l.source.id === d.id || l.target.id === d.id));
+  linkSel.classed("dimmed",      l => !(l.source.id === d.id || l.target.id === d.id));
+}
+
+function selectNodeById(id) {
+  const d = allNodes.find(n => n.id === id);
+  if (!d) return;
+  selectedNode = id;
+  highlightNeighbors(d);
+  showDetail(d);
+  // Pan to node
+  if (d.x && d.y && svgSel) {
+    const W = Math.max(400, window.innerWidth - 590);
+    const H = Math.max(400, window.innerHeight - 70);
+    svgSel.transition().duration(600)
+      .call(zoomBehavior.transform,
+        d3.zoomIdentity.translate(W/2 - d.x, H/2 - d.y));
+  }
+}
+
+function highlightPredictedLink(pl) {
+  const ids = new Set([pl.source, pl.target]);
+  nodeSel.classed("dimmed", d => !ids.has(d.id));
+  linkSel.classed("dimmed", true);
+  linkSel.classed("highlighted", false);
+  // Draw a dashed line between the two predicted nodes
+  const sNode = allNodes.find(n => n.id === pl.source);
+  const tNode = allNodes.find(n => n.id === pl.target);
+  gMain.selectAll(".pred-link-tmp").remove();
+  if (sNode && tNode) {
+    gMain.append("line").attr("class", "pred-link-tmp")
+      .attr("x1", sNode.x).attr("y1", sNode.y)
+      .attr("x2", tNode.x).attr("y2", tNode.y)
+      .attr("stroke", "#d97706").attr("stroke-width", 2.5)
+      .attr("stroke-dasharray", "6 4").attr("stroke-opacity", .9);
+  }
+}
+
+function resetHighlight() {
+  if (!nodeSel) return;
+  nodeSel.classed("dimmed", false);
+  linkSel.classed("dimmed highlighted", false);
+  gMain && gMain.selectAll(".pred-link-tmp").remove();
+  nodeSel.selectAll("circle.body")
+    .transition().duration(300)
+    .attr("fill", d => DEPT_COLORS[d.dept_code])
+    .attr("fill-opacity", 1);
+}
+
+/* ══════════════════════════════════════════════════════════
+   RIGHT PANEL – NODE DETAIL
+══════════════════════════════════════════════════════════ */
+function showDetail(d) {
+  document.getElementById("detail-placeholder").style.display = "none";
+  const el = document.getElementById("detail-content");
+  el.style.display = "block";
+
+  // Neighbors for collab list
+  const collabs = [];
+  allEdges.forEach(e => {
+    const sid = e.source.id || e.source, tid = e.target.id || e.target;
+    if (sid === d.id) collabs.push({ id: tid, w: e.weight });
+    if (tid === d.id) collabs.push({ id: sid, w: e.weight });
+  });
+  const collabNodes = collabs
+    .map(c => ({ node: allNodes.find(n => n.id === c.id), w: c.w }))
+    .filter(c => c.node)
+    .sort((a, b) => b.w - a.w);
+
+  // Community members
+  const commMembers = allNodes.filter(n => n.community === d.community && n.id !== d.id).length;
+
+  el.innerHTML = `
+    ${d.photo_url
+    ? `<img class="detail-photo" src="/api/photo?url=${encodeURIComponent(d.photo_url)}"
+           onerror="this.style.display='none';this.nextSibling.style.display='flex'"
+           style="width:60px;height:60px;border-radius:50%;object-fit:cover;margin:0 auto 12px;display:block;box-shadow:0 4px 12px rgba(0,0,0,.15)"/>`
+    : ''}
+  <div class="detail-avatar" style="background:${DEPT_COLORS[d.dept_code]};${d.photo_url ? 'display:none' : ''}">${initials(d.name)}</div>
+    <div class="detail-name">${d.name}</div>
+
+    <div class="detail-role" style="font-size: .82rem; color: var(--accent); text-align: center; font-weight: 600; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.03em;">
+      ${d.role || 'Docente Investigador'}
+    </div>
+
+    <div class="detail-dept">${DEPT_LABELS[d.dept_code]} · Community ${d.community + 1} (${commMembers + 1} members)</div>
+
+    ${d.email ? `
+      <div class="detail-email" style="font-size: .78rem; color: var(--text2); text-align: center; margin-bottom: 14px; font-family: 'DM Mono', monospace;">
+        ✉️ ${d.email}
+      </div>
+    ` : '<div style="margin-bottom: 14px;"></div>'}
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="mv">${d.h_index}</div><div class="mk">h-index</div>
+      </div>
+      <div class="metric-card">
+        <div class="mv">${d.pubs}</div><div class="mk">Publications</div>
+      </div>
+      <div class="metric-card">
+        <div class="mv">${d.degree}</div><div class="mk">Connections</div>
+      </div>
+      <div class="metric-card">
+        <div class="mv">${d.weighted_degree}</div><div class="mk">Wgt. Degree</div>
+      </div>
+      <div class="metric-card">
+        <div class="mv" style="font-size:.82rem">${d.betweenness_centrality.toFixed(3)}</div><div class="mk">Betweenness</div>
+      </div>
+      <div class="metric-card">
+        <div class="mv" style="font-size:.82rem">${d.pagerank.toFixed(4)}</div><div class="mk">PageRank</div>
+      </div>
+      <div class="metric-card" style="grid-column:1/-1">
+        <div class="mv" style="font-size:.82rem">${d.closeness_centrality.toFixed(3)}</div><div class="mk">Closeness Centrality</div>
+      </div>
+    </div>
+
+    <div class="section-head">Research Areas</div>
+    <div>${d.areas.map(a => `<span class="area-tag">${a}</span>`).join("")}</div>
+
+    <div class="section-head">Collaborators (${collabNodes.length})</div>
+    <div class="collab-list">
+      ${collabNodes.map(c => `
+        <div class="collab-item" onclick="selectNodeById('${c.node.id}')">
+          <div class="collab-dot" style="background:${DEPT_COLORS[c.node.dept_code]}"></div>
+          <div class="collab-name">${c.node.name}</div>
+          <div class="collab-w">${c.w} papers</div>
+        </div>`).join("")}
+    </div>`;
+}
+
+/* ══════════════════════════════════════════════════════════
+   LEGEND
+══════════════════════════════════════════════════════════ */
+function buildLegend() {
+  const lg = document.getElementById("legend");
+  lg.innerHTML = Object.entries(DEPT_COLORS).map(([code, color]) =>
+    `<div class="leg-item"><div class="leg-dot" style="background:${color}"></div>${code}</div>`
+  ).join("") +
+  `<div class="leg-item" style="border-left:1px solid #e2e6ed;padding-left:14px">
+    <div class="leg-dot" style="border:2px dashed #d97706;background:transparent"></div>High Betweenness
+  </div>`;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SEARCH
+══════════════════════════════════════════════════════════ */
+document.getElementById("search-box").addEventListener("input", function() {
+  const q = this.value.trim().toLowerCase();
+  if (!nodeSel) return;
+  if (!q) { resetHighlight(); return; }
+  const matching = new Set(allNodes.filter(n => n.name.toLowerCase().includes(q)).map(n => n.id));
+  nodeSel.classed("dimmed", d => !matching.has(d.id));
+  linkSel.classed("dimmed", d => !matching.has(d.source.id) && !matching.has(d.target.id));
+});
+
+/* ══════════════════════════════════════════════════════════
+   ZOOM CONTROLS
+══════════════════════════════════════════════════════════ */
+document.getElementById("zoom-in").addEventListener("click", () => {
+  svgSel && svgSel.transition().duration(300).call(zoomBehavior.scaleBy, 1.35);
+});
+document.getElementById("zoom-out").addEventListener("click", () => {
+  svgSel && svgSel.transition().duration(300).call(zoomBehavior.scaleBy, 0.75);
+});
+document.getElementById("zoom-reset").addEventListener("click", () => {
+  svgSel && svgSel.transition().duration(400).call(zoomBehavior.transform, d3.zoomIdentity);
+});
+
+/* ══════════════════════════════════════════════════════════
+   D3 DRAG HANDLERS (Faltaban estas definiciones)
+══════════════════════════════════════════════════════════ */
+function dragStart(event, d) {
+  if (!event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
+}
+
+function dragged(event, d) {
+  d.fx = event.x;
+  d.fy = event.y;
+}
+
+function dragEnd(event, d) {
+  if (!event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+/* ══════════════════════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════════════════════ */
+function initials(name) {
+  const parts = name.replace(/[áéíóúÁÉÍÓÚ]/g, c => "aeiouAEIOU"["áéíóúÁÉÍÓÚ".indexOf(c)]).split(" ");
+  return (parts[0][0] + (parts[1] ? parts[1][0] : "")).toUpperCase();
+}
+
+function shortName(name) {
+  const parts = name.split(" ");
+  return parts[0] + " " + (parts[parts.length - 1] || "");
+}
+
+function positionTooltip(event) {
+  const svgRect = document.getElementById("network-svg").getBoundingClientRect();
+  let x = event.clientX - svgRect.left + 14;
+  let y = event.clientY - svgRect.top  - 10;
+  if (x + 240 > svgRect.width)  x -= 260;
+  if (y + 220 > svgRect.height) y -= 230;
+  tooltip.style.left = x + "px";
+  tooltip.style.top  = y + "px";
+}
+
+// Helper to get current radius (since rScale is closure)
+let _rScaleCache = null;
+function rScale_fn(degree) {
+  if (!_rScaleCache) {
+    _rScaleCache = d3.scaleSqrt()
+      .domain([0, d3.max(allNodes, d => d.degree)])
+      .range([9, 28]);
+  }
+  return _rScaleCache(degree);
+}
+</script>
+</body>
+</html>

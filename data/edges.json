@@ -1,0 +1,1874 @@
+[
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "helard-alvarez-sanchez",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luz-antuanet-adanaque-infante",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "eric-javier-biagioli",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CS",
+    "is_cross_dept": false
+  },
+  {
+    "source": "jhedmar-jhonatan-callupe-luna",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luz-antuanet-adanaque-infante",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-andres-de-leo-martinez",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luz-antuanet-adanaque-infante",
+    "target": "manuel-arturo-deza-figueroa",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "cristian-lopez-del-alamo",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CS",
+    "is_cross_dept": false
+  },
+  {
+    "source": "lucia-rivera-charun",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luciano-arnaldo-romero-calla",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CS",
+    "is_cross_dept": false
+  },
+  {
+    "source": "luz-antuanet-adanaque-infante",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "luz-antuanet-adanaque-infante",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "helard-alvarez-sanchez",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "jhedmar-jhonatan-callupe-luna",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "jose-andres-de-leo-martinez",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "HUM",
+    "is_cross_dept": false
+  },
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "manuel-arturo-deza-figueroa",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "grace-alexandrino-ocana",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "lucia-rivera-charun",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "luciano-arnaldo-romero-calla",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "grace-alexandrino-ocana",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "HUM",
+    "is_cross_dept": false
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "grace-alexandrino-ocana",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "helard-alvarez-sanchez",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "helard-alvarez-sanchez",
+    "target": "jhedmar-jhonatan-callupe-luna",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "helard-alvarez-sanchez",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "helard-alvarez-sanchez",
+    "target": "jose-andres-de-leo-martinez",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "helard-alvarez-sanchez",
+    "target": "manuel-arturo-deza-figueroa",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "helard-alvarez-sanchez",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "helard-alvarez-sanchez",
+    "target": "lucia-rivera-charun",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "helard-alvarez-sanchez",
+    "target": "luciano-arnaldo-romero-calla",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "helard-alvarez-sanchez",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "helard-alvarez-sanchez",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "claudia-antonini-bova",
+    "target": "jose-larco-martinelli",
+    "weight": 1,
+    "source_dept": "IE",
+    "target_dept": "IE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "claudia-antonini-bova",
+    "target": "jorge-tipe-villanueva",
+    "weight": 1,
+    "source_dept": "IE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "patricia-araujo-pantoja",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "patricia-araujo-pantoja",
+    "target": "ruth-canahuire-cabello",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "patricia-araujo-pantoja",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luis-ernesto-flores-luyo",
+    "target": "patricia-araujo-pantoja",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "deyby-huamanchahua-canchanya",
+    "target": "patricia-araujo-pantoja",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "dante-inga-narvaez",
+    "target": "patricia-araujo-pantoja",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "elvis-jara-alegria",
+    "target": "patricia-araujo-pantoja",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "patricia-araujo-pantoja",
+    "target": "rensso-victor-hugo-mora-colque",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "moises-nunez-ochoa",
+    "target": "patricia-araujo-pantoja",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jonathan-tapullima",
+    "target": "patricia-araujo-pantoja",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "andres-julian-arias-moreno",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "andres-julian-arias-moreno",
+    "target": "emir-augusto-vela-saavedra",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jhedmar-jhonatan-callupe-luna",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "paul-cardenas-lizana",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-andres-de-leo-martinez",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "manuel-arturo-deza-figueroa",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "lucia-rivera-charun",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luciano-arnaldo-romero-calla",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "matteo-stiglich-labarthe",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "emir-augusto-vela-saavedra",
+    "target": "walter-sebastian-barrutia-alta",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "fabien-cornillier",
+    "target": "luis-alberto-bedrinana-mera",
+    "weight": 1,
+    "source_dept": "IE",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luis-alberto-bedrinana-mera",
+    "target": "ronald-r-gutierrez",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "CE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "juan-gabriel-gutierrez-alva",
+    "target": "luis-alberto-bedrinana-mera",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "giancarlo-marcone-flores",
+    "target": "luis-alberto-bedrinana-mera",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-ramos-saravia",
+    "target": "luis-alberto-bedrinana-mera",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "aurea-rossy-soriano-vargas",
+    "target": "luis-alberto-bedrinana-mera",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "francisco-tarazona-vasquez",
+    "target": "luis-alberto-bedrinana-mera",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "eric-javier-biagioli",
+    "target": "jesus-edwin-bellido-angulo",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CS",
+    "is_cross_dept": false
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "ruth-canahuire-cabello",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "CE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "luis-ernesto-flores-luyo",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "deyby-huamanchahua-canchanya",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "dante-inga-narvaez",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "elvis-jara-alegria",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "rensso-victor-hugo-mora-colque",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "moises-nunez-ochoa",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carlos-alberto-benedetty-torres",
+    "target": "jonathan-tapullima",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "cristian-lopez-del-alamo",
+    "target": "eric-javier-biagioli",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CS",
+    "is_cross_dept": false
+  },
+  {
+    "source": "jhedmar-jhonatan-callupe-luna",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jhedmar-jhonatan-callupe-luna",
+    "target": "jose-andres-de-leo-martinez",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jhedmar-jhonatan-callupe-luna",
+    "target": "manuel-arturo-deza-figueroa",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "AI",
+    "is_cross_dept": false
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "jhedmar-jhonatan-callupe-luna",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jhedmar-jhonatan-callupe-luna",
+    "target": "lucia-rivera-charun",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jhedmar-jhonatan-callupe-luna",
+    "target": "luciano-arnaldo-romero-calla",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jhedmar-jhonatan-callupe-luna",
+    "target": "yamilet-rosario-serrano-llerena",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "SYS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jhedmar-jhonatan-callupe-luna",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "jhedmar-jhonatan-callupe-luna",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "ruth-canahuire-cabello",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luis-ernesto-flores-luyo",
+    "target": "ruth-canahuire-cabello",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "deyby-huamanchahua-canchanya",
+    "target": "ruth-canahuire-cabello",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "dante-inga-narvaez",
+    "target": "ruth-canahuire-cabello",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "elvis-jara-alegria",
+    "target": "ruth-canahuire-cabello",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "rensso-victor-hugo-mora-colque",
+    "target": "ruth-canahuire-cabello",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "moises-nunez-ochoa",
+    "target": "ruth-canahuire-cabello",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jonathan-tapullima",
+    "target": "ruth-canahuire-cabello",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-andres-de-leo-martinez",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "manuel-arturo-deza-figueroa",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "lucia-rivera-charun",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luciano-arnaldo-romero-calla",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "matteo-stiglich-labarthe",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "paul-cardenas-lizana",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carmen-elena-flores-barreda",
+    "target": "jose-javier-cerda-hernandez",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-javier-cerda-hernandez",
+    "target": "jose-tomas-galvez-ghersi",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "SCI",
+    "is_cross_dept": false
+  },
+  {
+    "source": "daniel-vicente-horna-munoz",
+    "target": "jose-javier-cerda-hernandez",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carolina-parada-quinaya",
+    "target": "jose-javier-cerda-hernandez",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-javier-cerda-hernandez",
+    "target": "ursula-rodriguez-zuniga",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-javier-cerda-hernandez",
+    "target": "monica-cecilia-santa-maria-fuster",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "samuel-charca-mamani",
+    "target": "wando-kim",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "pedro-rau-lavado",
+    "target": "samuel-charca-mamani",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "julio-ernesto-valdivia-silva",
+    "target": "samuel-charca-mamani",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "emir-augusto-vela-saavedra",
+    "target": "samuel-charca-mamani",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "ME",
+    "is_cross_dept": false
+  },
+  {
+    "source": "luis-ernesto-flores-luyo",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "deyby-huamanchahua-canchanya",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "dante-inga-narvaez",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "elvis-jara-alegria",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "rensso-victor-hugo-mora-colque",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "moises-nunez-ochoa",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jonathan-tapullima",
+    "target": "sheyla-chero-osorio",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "fabien-cornillier",
+    "target": "ronald-r-gutierrez",
+    "weight": 1,
+    "source_dept": "IE",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "fabien-cornillier",
+    "target": "juan-gabriel-gutierrez-alva",
+    "weight": 1,
+    "source_dept": "IE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "fabien-cornillier",
+    "target": "giancarlo-marcone-flores",
+    "weight": 1,
+    "source_dept": "IE",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "fabien-cornillier",
+    "target": "jose-ramos-saravia",
+    "weight": 1,
+    "source_dept": "IE",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "aurea-rossy-soriano-vargas",
+    "target": "fabien-cornillier",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "IE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "fabien-cornillier",
+    "target": "francisco-tarazona-vasquez",
+    "weight": 1,
+    "source_dept": "IE",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-andres-de-leo-martinez",
+    "target": "manuel-arturo-deza-figueroa",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "jose-andres-de-leo-martinez",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-andres-de-leo-martinez",
+    "target": "lucia-rivera-charun",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-andres-de-leo-martinez",
+    "target": "luciano-arnaldo-romero-calla",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-andres-de-leo-martinez",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "HUM",
+    "is_cross_dept": false
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "jose-andres-de-leo-martinez",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "manuel-arturo-deza-figueroa",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "lucia-rivera-charun",
+    "target": "manuel-arturo-deza-figueroa",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luciano-arnaldo-romero-calla",
+    "target": "manuel-arturo-deza-figueroa",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "manuel-arturo-deza-figueroa",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "manuel-arturo-deza-figueroa",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "alberto-donayre-torres",
+    "target": "germain-garcia-zanabria",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "alberto-donayre-torres",
+    "target": "cristian-lopez-del-alamo",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "alberto-donayre-torres",
+    "target": "oscar-ramos-ponce",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "alberto-donayre-torres",
+    "target": "harry-gustavo-saavedra-espinoza",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "BIO",
+    "is_cross_dept": false
+  },
+  {
+    "source": "alberto-donayre-torres",
+    "target": "sashwat-tanay",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "alberto-donayre-torres",
+    "target": "jimmy-tarrillo-olano",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "akira-armando-wong-sato",
+    "target": "alberto-donayre-torres",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carmen-elena-flores-barreda",
+    "target": "jose-tomas-galvez-ghersi",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carmen-elena-flores-barreda",
+    "target": "daniel-vicente-horna-munoz",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carmen-elena-flores-barreda",
+    "target": "carolina-parada-quinaya",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "BIO",
+    "is_cross_dept": false
+  },
+  {
+    "source": "carmen-elena-flores-barreda",
+    "target": "ursula-rodriguez-zuniga",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "BIO",
+    "is_cross_dept": false
+  },
+  {
+    "source": "carmen-elena-flores-barreda",
+    "target": "monica-cecilia-santa-maria-fuster",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "deyby-huamanchahua-canchanya",
+    "target": "luis-ernesto-flores-luyo",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "dante-inga-narvaez",
+    "target": "luis-ernesto-flores-luyo",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "elvis-jara-alegria",
+    "target": "luis-ernesto-flores-luyo",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luis-ernesto-flores-luyo",
+    "target": "rensso-victor-hugo-mora-colque",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luis-ernesto-flores-luyo",
+    "target": "moises-nunez-ochoa",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jonathan-tapullima",
+    "target": "luis-ernesto-flores-luyo",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "lucia-rivera-charun",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "luciano-arnaldo-romero-calla",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "christian-flores-vega",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "christian-flores-vega",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "daniel-vicente-horna-munoz",
+    "target": "jose-tomas-galvez-ghersi",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carolina-parada-quinaya",
+    "target": "jose-tomas-galvez-ghersi",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-tomas-galvez-ghersi",
+    "target": "ursula-rodriguez-zuniga",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-tomas-galvez-ghersi",
+    "target": "monica-cecilia-santa-maria-fuster",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "cristian-lopez-del-alamo",
+    "target": "germain-garcia-zanabria",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "germain-garcia-zanabria",
+    "target": "oscar-ramos-ponce",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "germain-garcia-zanabria",
+    "target": "harry-gustavo-saavedra-espinoza",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "germain-garcia-zanabria",
+    "target": "sashwat-tanay",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "germain-garcia-zanabria",
+    "target": "jimmy-tarrillo-olano",
+    "weight": 1,
+    "source_dept": "AI",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "akira-armando-wong-sato",
+    "target": "germain-garcia-zanabria",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "AI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "juan-gabriel-gutierrez-alva",
+    "target": "ronald-r-gutierrez",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "giancarlo-marcone-flores",
+    "target": "ronald-r-gutierrez",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-ramos-saravia",
+    "target": "ronald-r-gutierrez",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "aurea-rossy-soriano-vargas",
+    "target": "ronald-r-gutierrez",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "francisco-tarazona-vasquez",
+    "target": "ronald-r-gutierrez",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "giancarlo-marcone-flores",
+    "target": "juan-gabriel-gutierrez-alva",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jose-ramos-saravia",
+    "target": "juan-gabriel-gutierrez-alva",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "aurea-rossy-soriano-vargas",
+    "target": "juan-gabriel-gutierrez-alva",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "CS",
+    "is_cross_dept": false
+  },
+  {
+    "source": "francisco-tarazona-vasquez",
+    "target": "juan-gabriel-gutierrez-alva",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carolina-parada-quinaya",
+    "target": "daniel-vicente-horna-munoz",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "daniel-vicente-horna-munoz",
+    "target": "ursula-rodriguez-zuniga",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "daniel-vicente-horna-munoz",
+    "target": "monica-cecilia-santa-maria-fuster",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "CE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "dante-inga-narvaez",
+    "target": "deyby-huamanchahua-canchanya",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "deyby-huamanchahua-canchanya",
+    "target": "elvis-jara-alegria",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "deyby-huamanchahua-canchanya",
+    "target": "rensso-victor-hugo-mora-colque",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "deyby-huamanchahua-canchanya",
+    "target": "moises-nunez-ochoa",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "deyby-huamanchahua-canchanya",
+    "target": "jonathan-tapullima",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "dante-inga-narvaez",
+    "target": "elvis-jara-alegria",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "dante-inga-narvaez",
+    "target": "rensso-victor-hugo-mora-colque",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "dante-inga-narvaez",
+    "target": "moises-nunez-ochoa",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "dante-inga-narvaez",
+    "target": "jonathan-tapullima",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "elvis-jara-alegria",
+    "target": "rensso-victor-hugo-mora-colque",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "elvis-jara-alegria",
+    "target": "moises-nunez-ochoa",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "aurea-rossy-soriano-vargas",
+    "target": "elvis-jara-alegria",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "elvis-jara-alegria",
+    "target": "jonathan-tapullima",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "pedro-rau-lavado",
+    "target": "wando-kim",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "julio-ernesto-valdivia-silva",
+    "target": "wando-kim",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "BIO",
+    "is_cross_dept": false
+  },
+  {
+    "source": "emir-augusto-vela-saavedra",
+    "target": "wando-kim",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "cristian-lopez-del-alamo",
+    "target": "oscar-ramos-ponce",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "cristian-lopez-del-alamo",
+    "target": "harry-gustavo-saavedra-espinoza",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "cristian-lopez-del-alamo",
+    "target": "sashwat-tanay",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "cristian-lopez-del-alamo",
+    "target": "jimmy-tarrillo-olano",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "akira-armando-wong-sato",
+    "target": "cristian-lopez-del-alamo",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "giancarlo-marcone-flores",
+    "target": "jose-ramos-saravia",
+    "weight": 1,
+    "source_dept": "HUM",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "aurea-rossy-soriano-vargas",
+    "target": "giancarlo-marcone-flores",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "francisco-tarazona-vasquez",
+    "target": "giancarlo-marcone-flores",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "moises-nunez-ochoa",
+    "target": "rensso-victor-hugo-mora-colque",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jonathan-tapullima",
+    "target": "rensso-victor-hugo-mora-colque",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jonathan-tapullima",
+    "target": "moises-nunez-ochoa",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "EE",
+    "is_cross_dept": false
+  },
+  {
+    "source": "bryam-orihuela-pinto",
+    "target": "yamilet-rosario-serrano-llerena",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "SYS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "hermes-pantoja-carhuavilca",
+    "target": "yamilet-rosario-serrano-llerena",
+    "weight": 1,
+    "source_dept": "SCI",
+    "target_dept": "SYS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "carolina-parada-quinaya",
+    "target": "ursula-rodriguez-zuniga",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "BIO",
+    "is_cross_dept": false
+  },
+  {
+    "source": "carolina-parada-quinaya",
+    "target": "monica-cecilia-santa-maria-fuster",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "harry-gustavo-saavedra-espinoza",
+    "target": "oscar-ramos-ponce",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "oscar-ramos-ponce",
+    "target": "sashwat-tanay",
+    "weight": 1,
+    "source_dept": "EE",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jimmy-tarrillo-olano",
+    "target": "oscar-ramos-ponce",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "akira-armando-wong-sato",
+    "target": "oscar-ramos-ponce",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "EE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "aurea-rossy-soriano-vargas",
+    "target": "jose-ramos-saravia",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "francisco-tarazona-vasquez",
+    "target": "jose-ramos-saravia",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  },
+  {
+    "source": "julio-ernesto-valdivia-silva",
+    "target": "pedro-rau-lavado",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "emir-augusto-vela-saavedra",
+    "target": "pedro-rau-lavado",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "lucia-rivera-charun",
+    "target": "luciano-arnaldo-romero-calla",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "lucia-rivera-charun",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "lucia-rivera-charun",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "CE",
+    "is_cross_dept": true
+  },
+  {
+    "source": "monica-cecilia-santa-maria-fuster",
+    "target": "ursula-rodriguez-zuniga",
+    "weight": 1,
+    "source_dept": "CE",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "luciano-arnaldo-romero-calla",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "luciano-arnaldo-romero-calla",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "CS",
+    "is_cross_dept": true
+  },
+  {
+    "source": "harry-gustavo-saavedra-espinoza",
+    "target": "sashwat-tanay",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "harry-gustavo-saavedra-espinoza",
+    "target": "jimmy-tarrillo-olano",
+    "weight": 1,
+    "source_dept": "BIO",
+    "target_dept": "UNK",
+    "is_cross_dept": true
+  },
+  {
+    "source": "akira-armando-wong-sato",
+    "target": "harry-gustavo-saavedra-espinoza",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "aurea-rossy-soriano-vargas",
+    "target": "francisco-tarazona-vasquez",
+    "weight": 1,
+    "source_dept": "CS",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "candy-veronica-tenorio-gonzales",
+    "target": "matteo-stiglich-labarthe",
+    "weight": 1,
+    "source_dept": "SYS",
+    "target_dept": "HUM",
+    "is_cross_dept": true
+  },
+  {
+    "source": "jimmy-tarrillo-olano",
+    "target": "sashwat-tanay",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "akira-armando-wong-sato",
+    "target": "sashwat-tanay",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "SCI",
+    "is_cross_dept": true
+  },
+  {
+    "source": "akira-armando-wong-sato",
+    "target": "jimmy-tarrillo-olano",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "UNK",
+    "is_cross_dept": false
+  },
+  {
+    "source": "emir-augusto-vela-saavedra",
+    "target": "julio-ernesto-valdivia-silva",
+    "weight": 1,
+    "source_dept": "ME",
+    "target_dept": "BIO",
+    "is_cross_dept": true
+  },
+  {
+    "source": "eunice-villicana-ortiz",
+    "target": "rafael-vera-pomalaza",
+    "weight": 1,
+    "source_dept": "UNK",
+    "target_dept": "ME",
+    "is_cross_dept": true
+  }
+]
